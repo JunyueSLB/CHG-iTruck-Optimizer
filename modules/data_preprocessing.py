@@ -310,7 +310,6 @@ def data_preprocessing(file_path, city_location_path, seg_division_path, special
     if not callout_rows.empty:
         # 与 city_location 表连接
         callout_rows = pd.merge(callout_rows, city_location, left_on='SOURCE CITY', right_on='Parent City', how='left')
-        callout_rows['LOCATION'] = callout_rows['LOCATION']  # 假设 city_location 表的目标列是 'Location'
         # 检查冲突列
         if 'EQUIPMENT ID_x' in callout_rows.columns and 'EQUIPMENT ID_y' in callout_rows.columns:
             callout_rows = callout_rows.drop(columns=['EQUIPMENT ID_y'])  # 删除右表的 EQUIPMENT ID

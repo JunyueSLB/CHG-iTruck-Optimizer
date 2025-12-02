@@ -67,7 +67,7 @@ def simulate_callout_to_rental(folder_path, rental_cost_path, output_path, excha
             )
 
             # 删除未匹配到的记录
-            df.dropna(subset=['Rental FAIXED', 'Rental Unit rate'], inplace=True)
+            df.dropna(subset=['Rental FAIXED', 'Rental Unit rate'])
 
             # 检查是否为空
             if df.empty:
@@ -154,7 +154,7 @@ def simulate_callout_to_rental(folder_path, rental_cost_path, output_path, excha
                 )
                 # 如果原始 Lane_Distance 已有值（如 TIANJIN_TIANJIN 特殊处理的值），则优先保留原始值
                 df['Lane_Distance'] = df['Lane_Distance_x'].fillna(df['Lane_Distance_y'])
-                df.drop(columns=['Lane_Distance_x', 'Lane_Distance_y'], inplace=True)
+                df.drop(columns=['Lane_Distance_x', 'Lane_Distance_y'])
 
                 # 计算调车费用
                 df['调车费用'] = np.where(
@@ -180,8 +180,8 @@ def simulate_callout_to_rental(folder_path, rental_cost_path, output_path, excha
                 将计算结果保存到 CSV 文件
                 """
                 # 重命名 Lane_Distance 列为 DIAOCHE_Lane_Distance
-                df.rename(columns={'Lane_Distance': 'DIAOCHE_Lane_Distance'}, inplace=True)
-                df.rename(columns={'调车费用': 'DIAOCHE_Cost'}, inplace=True)
+                df.rename(columns={'Lane_Distance': 'DIAOCHE_Lane_Distance'})
+                df.rename(columns={'调车费用': 'DIAOCHE_Cost'})
                 # 要去除的列名
                 columns_to_drop = ['Truck Plate', 'SHIPMENT SOURCE COUNTRY', 'Transport Mode', 'SERVPROV NAME', 'SHIPMENT CREATED BY',
                                    'TENDERED BY', 'IS SHIPMENT CANCELLED', 'ENROUTE', 'SHIPMENT MOT', 'weight', '拼接顺序',

@@ -89,9 +89,6 @@ def callout_trip_concat(callout_info_path, transit_time_path, output_dir, min_ch
             return False
         if trip1['DESTINATION CITY'] != trip2['SOURCE CITY']:
             return False
-        # 优先条件允许调车时间视为0
-        if trip1['SHIPMENT GATE OUT DESTINATION'] > trip2['SHIPMENT GATE IN SOURCE']:
-            return False
         return True
 
     graph_prefer = [[] for _ in range(n)]

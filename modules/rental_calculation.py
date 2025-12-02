@@ -131,7 +131,7 @@ def calculate_rental_time_utilization(rental_info_path, output_path, rental_cost
 
     # 删除多余列：grouped中的 'Truck Plate', 'LOCATION' (带后缀的) 和 '所属月份' (已在grouped里去掉)
     cols_to_drop = [col for col in merged_df.columns if col.endswith('_util')]
-    merged_df.drop(columns=cols_to_drop, inplace=True)
+    merged_df.drop(columns=cols_to_drop)
 
     # 将合并结果覆盖写回rental_to_callout_compare.csv
     merged_df.to_csv(rental_to_callout_compare_path, index=False, encoding='utf-8-sig')

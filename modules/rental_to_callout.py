@@ -128,7 +128,7 @@ def rental_to_callout(
     ).fillna(0)
     # 删除多余的 LOCATION 列
     if 'LOCATION_drop' in compare_df.columns:
-        compare_df.drop(columns=['LOCATION_drop'], inplace=True)
+        compare_df.drop(columns=['LOCATION_drop'])
 
     # 6.计算 Saving($) 等于两者的差值
     compare_df['Saving($)'] = compare_df['Total Rental Cost'] - compare_df['Rental_to_Callout Cost($)']
@@ -150,7 +150,7 @@ def rental_to_callout(
     compare_df.rename(columns={
         'Total Rental Cost': '月租费用($)',
         'Rental_to_Callout Cost($)': '外叫总费用($)'
-    }, inplace=True)
+    })
 
     # 9. 返回结果
     return compare_df, summary_df

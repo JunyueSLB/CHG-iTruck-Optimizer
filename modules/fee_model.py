@@ -191,7 +191,7 @@ def calculate_callout_cost(callout_info_path, callout_cost_path, rental_truck_li
     elif 'EQUIPMENT ID_y' in merged_callout_df.columns:
         merged_callout_df = merged_callout_df.rename(columns={'EQUIPMENT ID_y': 'EQUIPMENT ID'})
     cols_to_drop = ['Source Overnights', 'Destination Overnights', 'Total Overnights', 'Stand_by Cost(￥)', 'Dollar_RMB_rate', '费用/每天']
-    merged_callout_df.drop(columns=[col for col in cols_to_drop if col in merged_callout_df.columns], inplace=True)
+    merged_callout_df.drop(columns=[col for col in cols_to_drop if col in merged_callout_df.columns])
 
     # 保存结果
     merged_callout_df.to_csv(output_path, index=False, encoding='utf-8-sig')
@@ -265,7 +265,7 @@ def calculate_special_lane_cost(callout_info_path, special_lane_cost_path, renta
     special_lane_df['Special_lane Cost($)'] = special_lane_df['Special_lane Cost($)'].round(2)
 
     if 'Special_lane Cost(￥)' in special_lane_df.columns:
-        special_lane_df.drop(columns=['Special_lane Cost(￥)'], inplace=True)
+        special_lane_df.drop(columns=['Special_lane Cost(￥)'])
     if 'EQUIPMENT ID_x' in special_lane_df.columns and 'EQUIPMENT ID_y' in special_lane_df.columns:
         # 以 EQUIPMENT ID_x 为准，删除 EQUIPMENT ID_y
         special_lane_df = special_lane_df.rename(columns={'EQUIPMENT ID_x': 'EQUIPMENT ID'})
